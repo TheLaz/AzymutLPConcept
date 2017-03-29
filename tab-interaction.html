@@ -215,9 +215,18 @@
         </div>
         <script>
             (function() {
-                var studioTab = $('#studioTab');
-                var labelTab = $('#labelTab');
                 var logo = $('.logo');
+
+                var studioTab = $('#studioTab');
+                var studioTitle = studioTab.find('.title');
+                var studioOverlay = studioTab.find('.overlay');
+                var studioBtnMore = studioTab.find('.btn-more');
+
+                var labelTab = $('#labelTab');
+                var labelTitle = labelTab.find('.title');
+                var labelOverlay = labelTab.find('.overlay');
+                var labelBtnMore = labelTab.find('.btn-more');
+                
                 
                 function onStudioTab () {
                     var SwitchTimeLine = new TimelineMax();
@@ -231,7 +240,7 @@
                         x: 25
                     });
 
-                    SwitchTimeLine.to(studioTab.find('.title'), 0.01, {
+                    SwitchTimeLine.to(studioTitle, 0.01, {
                         scaleX: 3,
                         scaleY: 3
                     }).to(labelTab.find('.title'), 0.01, {
@@ -239,12 +248,12 @@
                         scaleY: 1
                     });
 
-                    SwitchTimeLine.to(studioTab.find('.btn-more'), 0.1, {
+                    SwitchTimeLine.to(studioBtnMore, 0.1, {
                         x: 152,
                         opacity: 1
                     });
 
-                    SwitchTimeLine.to(labelTab.find('.btn-more'), 0.1, {
+                    SwitchTimeLine.to(labelBtnMore, 0.1, {
                         x: 250,
                         opacity: 0
                     });
@@ -256,11 +265,11 @@
                             Overlay: (Color: dark)
                     */
 
-                    SwitchTimeLine.to(studioTab.find('.overlay'), 0.1, {
+                    SwitchTimeLine.to(studioOverlay, 0.1, {
                         backgroundColor: 'rgba(47, 52, 253, 0.7)'
                     }, 0.18);
 
-                    SwitchTimeLine.to(labelTab.find('.overlay'), 0.1, {
+                    SwitchTimeLine.to(labelOverlay, 0.1, {
                         backgroundColor: 'rgba(17, 17, 17, 0.88)'
                     }, 0.1);  
                 }
@@ -277,12 +286,12 @@
                         x: 300
                     });
 
-                    SwitchTimeLine.to(labelTab.find('.title'), 0.1, {
+                    SwitchTimeLine.to(labelTitle, 0.1, {
                         scaleX: 3,
                         scaleY: 3
                     });
 
-                    SwitchTimeLine.to(studioTab.find('.title'), 0.1, {
+                    SwitchTimeLine.to(studioTitle, 0.1, {
                         scaleX: 1,
                         scaleY: 1
                     });
@@ -292,21 +301,15 @@
                             Btn-more: (move outside with fade)
                     */
 
-                    SwitchTimeLine.to(studioTab.find('.btn-more'), 0.1, {
-                        x: -250,
-                        opacity: 0
-                    });
-
-                    SwitchTimeLine.to(labelTab.find('.btn-more'), 0.1, {
+                    SwitchTimeLine.to(labelBtnMore, 0.1, {
                         x: -154,
                         opacity: 1
                     });
 
-
-                    /*SwitchTimeLine.to(labelTab.find('.btn-more'), 0, {
-                        x: -500,
+                    SwitchTimeLine.to(studioBtnMore, 0.1, {
+                        x: -250,
                         opacity: 0
-                    });*/
+                    });
 
                     /**
                         Label:
@@ -315,11 +318,11 @@
                             Overlay: (Color: dark)
                     */
 
-                    SwitchTimeLine.to(labelTab.find('.overlay'), 0.1, {
+                    SwitchTimeLine.to(labelOverlay, 0.1, {
                         backgroundColor: 'rgba(255, 0, 0, 0.7)'
                     }, 0.18);
 
-                    SwitchTimeLine.to(studioTab.find('.overlay'), 0.1, {
+                    SwitchTimeLine.to(studioOverlay, 0.1, {
                         backgroundColor: 'rgba(17, 17, 17, 0.88)'
                     }, 0.1);
                 }
