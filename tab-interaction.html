@@ -36,6 +36,26 @@
             }
 
             /**
+                Buttons - more
+            */
+
+            .btn-more {
+                background-color: #111111;
+                border: 0;
+                width: 200px;
+                height: 10px;
+                color: #FBFCFA;
+                padding: 12px 30px 25px 0;
+                text-transform: uppercase;
+            }
+
+            .btn-more .icon {
+                display: inline-block;
+                margin-left: 66px;
+                transform: scaleX(4);
+            }
+
+            /**
                 Roller
             */
 
@@ -48,7 +68,8 @@
                 right: 0;
                 top: 50%;
                 margin-top: -38px;
-                margin-right: -31px;
+                margin-right: -40px;
+                letter-spacing: 3px;
             }
 
             /**
@@ -84,6 +105,8 @@
                 z-index: 2;
                 padding: 15px 33px;
                 height: 100%;
+                width: 100%;
+                overflow: hidden;
             }
 
             .tabs .tab .content h2 {
@@ -119,6 +142,10 @@
                 url(http://www.technobuffalo.com/wp-content/uploads/2016/10/surface-studio-125-630x420.jpg);
             }
 
+            .tab.tab--studio .btn-more {
+                transform: translate(152px, 204px);
+            }
+
             .tab.tab--studio .title {
                 transform: scale(3, 3);
                 transform-origin: left;
@@ -143,7 +170,13 @@
 
             .tab.tab--label .title {
                  transform-origin: right;
-             }
+            }
+
+            .tab.tab--label .btn-more {
+                direction: ltr;
+                transform: translate(200px, 204px);
+                opacity: 0;
+            }
 
 
         </style>
@@ -167,6 +200,7 @@
                         <div>studio</div>
                         <div>Nagran</div>
                     </h2>
+                    <button type="button" class="btn-more">dalej <span class="icon">→</span></button>
                 </div>
             </a><a id="labelTab" class="tab tab--label" href="#">
                 <div class="overlay"></div>
@@ -175,6 +209,7 @@
                         label <br/>
                         Muzyczny
                     </h2>
+                    <button type="button" class="btn-more">dalej <span class="icon">→</span></button>
                 </div>
             </a>
         </div>
@@ -202,6 +237,16 @@
                     }).to(labelTab.find('.title'), 0.01, {
                         scaleX: 1,
                         scaleY: 1
+                    });
+
+                    SwitchTimeLine.to(studioTab.find('.btn-more'), 0.1, {
+                        x: 152,
+                        opacity: 1
+                    });
+
+                    SwitchTimeLine.to(labelTab.find('.btn-more'), 0.1, {
+                        x: 250,
+                        opacity: 0
                     });
 
                     /**
@@ -232,15 +277,36 @@
                         x: 300
                     });
 
-                    SwitchTimeLine.to(labelTab.find('.title'), 0.05, {
+                    SwitchTimeLine.to(labelTab.find('.title'), 0.1, {
                         scaleX: 3,
                         scaleY: 3
                     });
 
-                    SwitchTimeLine.to(studioTab.find('.title'), 0.05, {
+                    SwitchTimeLine.to(studioTab.find('.title'), 0.1, {
                         scaleX: 1,
                         scaleY: 1
                     });
+
+                    /**
+                        Studio:
+                            Btn-more: (move outside with fade)
+                    */
+
+                    SwitchTimeLine.to(studioTab.find('.btn-more'), 0.1, {
+                        x: -250,
+                        opacity: 0
+                    });
+
+                    SwitchTimeLine.to(labelTab.find('.btn-more'), 0.1, {
+                        x: -154,
+                        opacity: 1
+                    });
+
+
+                    /*SwitchTimeLine.to(labelTab.find('.btn-more'), 0, {
+                        x: -500,
+                        opacity: 0
+                    });*/
 
                     /**
                         Label:
