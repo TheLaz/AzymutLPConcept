@@ -3,6 +3,8 @@
 		<title></title>
         <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <style>
             html, body {
                 margin: 0;
@@ -14,10 +16,39 @@
             body {
                 background-color: #131213;
                 font-family: 'Karla', sans-serif;
+                color: #FBFCFA;
             }
 
             body a {
                 outline: none;
+            }
+
+            /**
+                Logo
+            */
+
+            .logo {
+                font-family: 'Nova Mono', sans-serif;
+                font-size: 20px;
+                position: absolute;
+                z-index: 3;
+                transform: translate(35px, 25px);
+            }
+
+            /**
+                Roller
+            */
+
+            .roller {
+                z-index: 3;
+                position: absolute;
+                text-decoration: none;
+                color: #fff;
+                transform: rotate(90deg);
+                right: 0;
+                top: 50%;
+                margin-top: -38px;
+                margin-right: -31px;
             }
 
             /**
@@ -69,27 +100,31 @@
                 Tabs - Overlay
             */
 
-            #tabStudio:target {
+            .tabs .tab--studio.selected {
                 width: 492px;
             }
 
-            .tabs .tab {
-                transition: width 0.13s cubic-bezier(0.71, 0.55, 0.55, 1.33);
-                animation-fill-mode: forwards;
+            .tabs .tab--studio .overlay {
+                background-color: rgba(47, 52, 253, 0.7);
             }
 
             /**
                 Studio
             */
 
-            .tabs .tab-studio {
+            .tab--studio {
                 left: 0;
                 z-index: 2;
                 background-image:
                 url(http://www.technobuffalo.com/wp-content/uploads/2016/10/surface-studio-125-630x420.jpg);
             }
 
-            .tabs .tab-studio h2 div + div {
+            .tab.tab--studio .title {
+                transform: scale(3, 3);
+                transform-origin: left;
+             }
+
+            .tab.tab--studio .title div + div {
                 letter-spacing: 2px;
             }
 
@@ -97,7 +132,7 @@
                 Label
             */
 
-            .tabs .tab-label {
+            .tab.tab--label {
                 right: 0;
                 z-index: 1;
                 direction: rtl;
@@ -106,58 +141,9 @@
                     url(https://dri1.img.digitalrivercontent.net/Storefront/Company/msintl/images/English/en-INTL-Surface-Cardinal-42L-00001/PDP/en-INTL-PDP0-Surface-Cardinal-42L-00001-F1-desktop.jpg);
             }
 
-            /**
-                Tabs - Overlay
-            */
-            #tabStudio:target .overlay {
-                animation: onOpenStudioOverlay 0.1s;
-                animation-delay: 0.15s;
-                animation-fill-mode: forwards;
-            }
-
-            #tabLabel:target .overlay {
-                animation: onOpenLabelOverlay 0.1s;
-                animation-delay: 0.15s;
-                animation-fill-mode: forwards;
-            }
-
-            @keyframes onOpenLabelOverlay {
-                100% {
-                    background-color: rgba(255, 0, 0, 0.7);
-                }
-            }
-
-            @keyframes onOpenStudioOverlay {
-                100% {
-                    background-color: rgba(47, 52, 253, 0.7);
-                }
-            }
-
-            /**
-                Tabs - Title Size
-            */
-
-            #tabLabel:target h2,
-            #tabStudio:target h2 {
-                transform: scale(1, 1);
-                animation: onOpenFontSize 0.1s;
-                animation-delay: 0.12s;
-                animation-fill-mode: forwards;
-            }
-
-            #tabLabel:target h2 {
-                transform-origin: right;
-            }
-
-            #tabStudio:target h2 {
-                transform-origin: left;
-            }
-
-            @keyframes onOpenFontSize {
-                100% {
-                    transform: scale(3, 3);
-                }
-            }
+            .tab.tab--label .title {
+                 transform-origin: right;
+             }
 
 
         </style>
@@ -168,23 +154,113 @@
             https://dribbble.com/shots/3389839-Azymut-LP-Transition
         -->
         <div class="tabs">
-            <a id="tabStudio" class="tab tab-studio" href="#tabStudio">
+            <div class="logo">
+                ASYMUT
+            </div>
+            <a id="studioTab" class="tab tab--studio selected" href="#">
                 <div class="overlay"></div>
+                <div class="roller">
+                    AZYMUT
+                </div>
                 <div class="content">
-                    <h2>
+                    <h2 class="title">
                         <div>studio</div>
                         <div>Nagran</div>
                     </h2>
                 </div>
-            </a><a id="tabLabel" class="tab tab-label" href="#tabLabel">
+            </a><a id="labelTab" class="tab tab--label" href="#">
                 <div class="overlay"></div>
                 <div class="content">
-                    <h2>
+                    <h2 class="title">
                         label <br/>
                         Muzyczny
                     </h2>
                 </div>
             </a>
         </div>
+        <script>
+            (function() {
+                var studioTab = $('#studioTab');
+                var labelTab = $('#labelTab');
+                var logo = $('.logo');
+                
+                function onStudioTab () {
+                    var SwitchTimeLine = new TimelineMax();
+                    
+                    SwitchTimeLine.to(studioTab, 0.1, {
+                        ease: Circ.easeIn,
+                        width: '492px'
+                    });
+
+                    SwitchTimeLine.to(logo, 0.1, {
+                        x: 25
+                    });
+
+                    SwitchTimeLine.to(studioTab.find('.title'), 0.01, {
+                        scaleX: 3,
+                        scaleY: 3
+                    }).to(labelTab.find('.title'), 0.01, {
+                        scaleX: 1,
+                        scaleY: 1
+                    });
+
+                    /**
+                        Studio:
+                            Overlay: (Color: blue)
+                        Label:
+                            Overlay: (Color: dark)
+                    */
+
+                    SwitchTimeLine.to(studioTab.find('.overlay'), 0.1, {
+                        backgroundColor: 'rgba(47, 52, 253, 0.7)'
+                    }, 0.18);
+
+                    SwitchTimeLine.to(labelTab.find('.overlay'), 0.1, {
+                        backgroundColor: 'rgba(17, 17, 17, 0.88)'
+                    }, 0.1);  
+                }
+
+                function onLabelTab () {
+                    var SwitchTimeLine = new TimelineMax();
+
+                    SwitchTimeLine.to(studioTab, 0.1, {
+                        ease: Circ.easeIn,
+                        width: '254px'
+                    });
+
+                    SwitchTimeLine.to(logo, 0.1, {
+                        x: 300
+                    });
+
+                    SwitchTimeLine.to(labelTab.find('.title'), 0.05, {
+                        scaleX: 3,
+                        scaleY: 3
+                    });
+
+                    SwitchTimeLine.to(studioTab.find('.title'), 0.05, {
+                        scaleX: 1,
+                        scaleY: 1
+                    });
+
+                    /**
+                        Label:
+                            Overlay: (Color: blue)
+                        Studio:
+                            Overlay: (Color: dark)
+                    */
+
+                    SwitchTimeLine.to(labelTab.find('.overlay'), 0.1, {
+                        backgroundColor: 'rgba(255, 0, 0, 0.7)'
+                    }, 0.18);
+
+                    SwitchTimeLine.to(studioTab.find('.overlay'), 0.1, {
+                        backgroundColor: 'rgba(17, 17, 17, 0.88)'
+                    }, 0.1);
+                }
+
+                studioTab.on('click', onStudioTab);
+                labelTab.on('click', onLabelTab);
+            })();
+        </script>
 	</body>
 </html>
