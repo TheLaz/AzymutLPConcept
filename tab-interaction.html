@@ -1,0 +1,190 @@
+<html>
+	<head>
+		<title></title>
+        <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet">
+        <style>
+            html, body {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                height: 100%;
+            }
+
+            body {
+                background-color: #131213;
+                font-family: 'Karla', sans-serif;
+            }
+
+            body a {
+                outline: none;
+            }
+
+            /**
+                Tabs - Default Settings
+            */
+            .tabs {
+                overflow: hidden;
+                position: relative;
+                width: 745px;
+                height: 412px;
+            }
+
+            .tabs .tab {
+                width: 254px;
+                height: 412px;
+                position: absolute;
+            }
+
+            .tabs .tab .overlay,
+            .tabs .tab .content {
+                position: absolute;
+                top: 0;
+            }
+
+            .tabs .tab .overlay {
+                background-color: rgba(17, 17, 17, 0.88);
+                height: 100%;
+                width: 100%;
+                z-index: 1;
+            }
+
+            .tabs .tab .content {
+                z-index: 2;
+                padding: 15px 33px;
+                height: 100%;
+            }
+
+            .tabs .tab .content h2 {
+                margin-top: 145px;
+                font-size: 18px;
+                color: #ffffff;
+                text-transform: uppercase;
+                letter-spacing: 3px;
+                position: absolute;
+            }
+
+
+            /**
+                Tabs - Overlay
+            */
+
+            #tabStudio:target {
+                width: 492px;
+            }
+
+            .tabs .tab {
+                transition: width 0.13s cubic-bezier(0.71, 0.55, 0.55, 1.33);
+                animation-fill-mode: forwards;
+            }
+
+            /**
+                Studio
+            */
+
+            .tabs .tab-studio {
+                left: 0;
+                z-index: 2;
+                background-image:
+                url(http://www.technobuffalo.com/wp-content/uploads/2016/10/surface-studio-125-630x420.jpg);
+            }
+
+            .tabs .tab-studio h2 div + div {
+                letter-spacing: 2px;
+            }
+
+            /**
+                Label
+            */
+
+            .tabs .tab-label {
+                right: 0;
+                z-index: 1;
+                direction: rtl;
+                width: 492px;
+                background-image:
+                    url(https://dri1.img.digitalrivercontent.net/Storefront/Company/msintl/images/English/en-INTL-Surface-Cardinal-42L-00001/PDP/en-INTL-PDP0-Surface-Cardinal-42L-00001-F1-desktop.jpg);
+            }
+
+            /**
+                Tabs - Overlay
+            */
+            #tabStudio:target .overlay {
+                animation: onOpenStudioOverlay 0.1s;
+                animation-delay: 0.15s;
+                animation-fill-mode: forwards;
+            }
+
+            #tabLabel:target .overlay {
+                animation: onOpenLabelOverlay 0.1s;
+                animation-delay: 0.15s;
+                animation-fill-mode: forwards;
+            }
+
+            @keyframes onOpenLabelOverlay {
+                100% {
+                    background-color: rgba(255, 0, 0, 0.7);
+                }
+            }
+
+            @keyframes onOpenStudioOverlay {
+                100% {
+                    background-color: rgba(47, 52, 253, 0.7);
+                }
+            }
+
+            /**
+                Tabs - Title Size
+            */
+
+            #tabLabel:target h2,
+            #tabStudio:target h2 {
+                transform: scale(1, 1);
+                animation: onOpenFontSize 0.1s;
+                animation-delay: 0.12s;
+                animation-fill-mode: forwards;
+            }
+
+            #tabLabel:target h2 {
+                transform-origin: right;
+            }
+
+            #tabStudio:target h2 {
+                transform-origin: left;
+            }
+
+            @keyframes onOpenFontSize {
+                100% {
+                    transform: scale(3, 3);
+                }
+            }
+
+
+        </style>
+	</head>
+
+	<body>
+    	<!--
+            https://dribbble.com/shots/3389839-Azymut-LP-Transition
+        -->
+        <div class="tabs">
+            <a id="tabStudio" class="tab tab-studio" href="#tabStudio">
+                <div class="overlay"></div>
+                <div class="content">
+                    <h2>
+                        <div>studio</div>
+                        <div>Nagran</div>
+                    </h2>
+                </div>
+            </a><a id="tabLabel" class="tab tab-label" href="#tabLabel">
+                <div class="overlay"></div>
+                <div class="content">
+                    <h2>
+                        label <br/>
+                        Muzyczny
+                    </h2>
+                </div>
+            </a>
+        </div>
+	</body>
+</html>
