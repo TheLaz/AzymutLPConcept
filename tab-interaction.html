@@ -3,6 +3,7 @@
 		<title></title>
         <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Nova+Mono" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Cutive+Mono" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.0/TweenMax.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <style>
@@ -178,6 +179,31 @@
                 opacity: 0;
             }
 
+            /**
+                Legend
+            */
+
+            .legend--item {
+                font-family: 'Cutive Mono', monospace;
+                position: absolute;
+                z-index: 3;
+                color: #FBFCFA;
+                text-transform: uppercase;
+                font-size: 12px;
+            }
+
+            .legend--item.years {
+                transform: translate(30px, 350px);
+            }
+
+            .legend--item.address {
+                transform: translate(172px, 350px);
+            }
+
+            .legend--item.art {
+                transform: translate(373px, 348px);
+            }
+
 
         </style>
 	</head>
@@ -212,6 +238,18 @@
                     <button type="button" class="btn-more">dalej <span class="icon">→</span></button>
                 </div>
             </a>
+            <div class="legend--item years">
+                <div>2016</div>
+                <div>2017</div>
+            </div>
+            <div class="legend--item address">
+                <div>aleja lipowa 12</div>
+                <div>knurow</div>
+            </div>
+            <div class="legend--item art">
+                <div>693 647 663</div>
+                <div>507 188 080</div>
+            </div>
         </div>
         <script>
             (function() {
@@ -226,13 +264,16 @@
                 var labelTitle = labelTab.find('.title');
                 var labelOverlay = labelTab.find('.overlay');
                 var labelBtnMore = labelTab.find('.btn-more');
-                
+
+                var legendYears = $('.legend--item.years');
+                var legendAddress = $('.legend--item.address');
+                var legendArt = $('.legend--item.art');
                 
                 function onStudioTab () {
                     var SwitchTimeLine = new TimelineMax();
                     
                     SwitchTimeLine.to(studioTab, 0.1, {
-                        ease: Circ.easeIn,
+                        ease: Elastic.easeIn,
                         width: '492px'
                     });
 
@@ -243,7 +284,7 @@
                     SwitchTimeLine.to(studioTitle, 0.01, {
                         scaleX: 3,
                         scaleY: 3
-                    }).to(labelTab.find('.title'), 0.01, {
+                    }).to(labelTitle, 0.01, {
                         scaleX: 1,
                         scaleY: 1
                     });
@@ -258,6 +299,22 @@
                         opacity: 0
                     });
 
+                    /**
+                        Legend
+                    */
+
+                    SwitchTimeLine.to(legendYears, 0.2, {
+                        x: 30
+                    });
+
+                    SwitchTimeLine.to(legendAddress, 0.2, {
+                        x: 172
+                    });
+
+                    SwitchTimeLine.to(legendArt, 0.2, {
+                        x: 373
+                    });
+                    
                     /**
                         Studio:
                             Overlay: (Color: blue)
@@ -309,6 +366,22 @@
                     SwitchTimeLine.to(studioBtnMore, 0.1, {
                         x: -250,
                         opacity: 0
+                    });
+
+                    /**
+                        Legend
+                    */
+
+                    SwitchTimeLine.to(legendArt, 0.2, {
+                        x: 630
+                    });
+
+                    SwitchTimeLine.to(legendAddress, 0.2, {
+                        x: 450
+                    });
+
+                    SwitchTimeLine.to(legendYears, 0.2, {
+                        x: 300
                     });
 
                     /**
