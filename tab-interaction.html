@@ -268,136 +268,54 @@
                 var legendYears = $('.legend--item.years');
                 var legendAddress = $('.legend--item.address');
                 var legendArt = $('.legend--item.art');
+
+                var pageAnimationSettings = {
+                    time: 0.3,
+                    easing: Elastic.easeOut.config(1, 0.5)
+                }
+
+                var timeLineLabel = new TimelineMax({ paused: true });
+                var timeLineStudio = new TimelineMax({ paused: true });
+                
+                timeLineStudio
+                        .to(studioTab, pageAnimationSettings.time, {
+                            ease: pageAnimationSettings.easing,
+                            width: '492px'
+                        })
+                        .to(logo,               0.25, { x: 25 }, 0)
+                        .to(studioTitle,        0.1, { scaleX: 3, scaleY: 3 }, 0)
+                        .to(studioBtnMore,      0.2, { x: 152, opacity: 1 }, 0)
+                        .to(legendYears,        0.1, { x: 30 },  0)
+                        .to(legendAddress,      0.1, { x: 172 }, 0.2)
+                        .to(legendArt,          0.1, { x: 373 }, 0.3)
+                        .to(labelBtnMore,       0.1, { x: 250, opacity: 0 }, 0.005)
+                        .to(labelTitle,         0.1, { scaleX: 1, scaleY: 1 }, 0.005)
+                        .to(studioOverlay,      0.1, { backgroundColor: 'rgba(47, 52, 253, 0.7)' }, '-=0.1')
+                        .to(labelOverlay,       0.1, { backgroundColor: 'rgba(17, 17, 17, 0.88)' });
+
+                timeLineLabel
+                    .to(studioTab, pageAnimationSettings.time, {
+                        ease: pageAnimationSettings.easing,
+                        width: '254px'
+                    })
+                    .to(logo,               0.25, { x: 300 }, 0)
+                    .to(labelTitle,         0.1, { scaleX: 3, scaleY: 3 }, 0)
+                    .to(studioBtnMore,      0.2, { x:  -250, opacity: 0 }, 0)
+                    .to(legendArt,          0.1, { x: 630 }, 0)
+                    .to(legendAddress,      0.1, { x: 450 }, 0.2)
+                    .to(legendYears,        0.1, { x: 300 }, 0.3)
+                    .to(labelBtnMore,       0.1, { x: -154, opacity: 1 }, 0.005)
+                    .to(studioTitle,        0.1, { scaleX: 1, scaleY: 1 }, 0)
+                    .to(labelOverlay,       0.1, { backgroundColor: 'rgba(255, 0, 0, 0.7)' }, '-=0.1')
+                    .to(studioOverlay,      0.1, { backgroundColor: 'rgba(17, 17, 17, 0.88)' });
+
                 
                 function onStudioTab () {
-                    var SwitchTimeLine = new TimelineMax();
-                    
-                    SwitchTimeLine.to(studioTab, 0.1, {
-                        ease: Elastic.easeIn,
-                        width: '492px'
-                    });
-
-                    SwitchTimeLine.to(logo, 0.1, {
-                        x: 25
-                    });
-
-                    SwitchTimeLine.to(studioTitle, 0.01, {
-                        scaleX: 3,
-                        scaleY: 3
-                    }).to(labelTitle, 0.01, {
-                        scaleX: 1,
-                        scaleY: 1
-                    });
-
-                    SwitchTimeLine.to(studioBtnMore, 0.1, {
-                        x: 152,
-                        opacity: 1
-                    });
-
-                    SwitchTimeLine.to(labelBtnMore, 0.1, {
-                        x: 250,
-                        opacity: 0
-                    });
-
-                    /**
-                        Legend
-                    */
-
-                    SwitchTimeLine.to(legendYears, 0.2, {
-                        x: 30
-                    });
-
-                    SwitchTimeLine.to(legendAddress, 0.2, {
-                        x: 172
-                    });
-
-                    SwitchTimeLine.to(legendArt, 0.2, {
-                        x: 373
-                    });
-                    
-                    /**
-                        Studio:
-                            Overlay: (Color: blue)
-                        Label:
-                            Overlay: (Color: dark)
-                    */
-
-                    SwitchTimeLine.to(studioOverlay, 0.1, {
-                        backgroundColor: 'rgba(47, 52, 253, 0.7)'
-                    }, 0.18);
-
-                    SwitchTimeLine.to(labelOverlay, 0.1, {
-                        backgroundColor: 'rgba(17, 17, 17, 0.88)'
-                    }, 0.1);  
+                        timeLineStudio.play(0);
                 }
 
                 function onLabelTab () {
-                    var SwitchTimeLine = new TimelineMax();
-
-                    SwitchTimeLine.to(studioTab, 0.1, {
-                        ease: Circ.easeIn,
-                        width: '254px'
-                    });
-
-                    SwitchTimeLine.to(logo, 0.1, {
-                        x: 300
-                    });
-
-                    SwitchTimeLine.to(labelTitle, 0.1, {
-                        scaleX: 3,
-                        scaleY: 3
-                    });
-
-                    SwitchTimeLine.to(studioTitle, 0.1, {
-                        scaleX: 1,
-                        scaleY: 1
-                    });
-
-                    /**
-                        Studio:
-                            Btn-more: (move outside with fade)
-                    */
-
-                    SwitchTimeLine.to(labelBtnMore, 0.1, {
-                        x: -154,
-                        opacity: 1
-                    });
-
-                    SwitchTimeLine.to(studioBtnMore, 0.1, {
-                        x: -250,
-                        opacity: 0
-                    });
-
-                    /**
-                        Legend
-                    */
-
-                    SwitchTimeLine.to(legendArt, 0.2, {
-                        x: 630
-                    });
-
-                    SwitchTimeLine.to(legendAddress, 0.2, {
-                        x: 450
-                    });
-
-                    SwitchTimeLine.to(legendYears, 0.2, {
-                        x: 300
-                    });
-
-                    /**
-                        Label:
-                            Overlay: (Color: blue)
-                        Studio:
-                            Overlay: (Color: dark)
-                    */
-
-                    SwitchTimeLine.to(labelOverlay, 0.1, {
-                        backgroundColor: 'rgba(255, 0, 0, 0.7)'
-                    }, 0.18);
-
-                    SwitchTimeLine.to(studioOverlay, 0.1, {
-                        backgroundColor: 'rgba(17, 17, 17, 0.88)'
-                    }, 0.1);
+                    timeLineLabel.play(0);
                 }
 
                 studioTab.on('click', onStudioTab);
