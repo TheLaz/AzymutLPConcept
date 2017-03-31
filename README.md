@@ -1,7 +1,7 @@
 # AzymutLPConcept
 Azymut LP — Transition
 
-[logo]: https://d13yacurqjgara.cloudfront.net/users/594224/screenshots/3389839/azymut_lp_dribbble.gif "Azymut LP"
+![alt tag](https://d13yacurqjgara.cloudfront.net/users/594224/screenshots/3389839/azymut_lp_dribbble.gif)
 
 Based on Dribbble:
 
