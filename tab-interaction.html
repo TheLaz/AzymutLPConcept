@@ -274,9 +274,9 @@
                     easing: Elastic.easeOut.config(1, 0.5)
                 }
 
-                var timeLineLabel = new TimelineMax({ paused: true });
-                var timeLineStudio = new TimelineMax({ paused: true });
-                
+                var timeLineLabel = new TimelineMax({   repeat: -1, repeatDelay: 2, delay: 1});
+                var timeLineStudio = new TimelineMax({  repeat: -1, repeatDelay: 2, delay: 2.3});
+
                 timeLineStudio
                         .to(studioTab, pageAnimationSettings.time, {
                             ease: pageAnimationSettings.easing,
@@ -308,18 +308,6 @@
                     .to(studioTitle,        0.1, { scaleX: 1, scaleY: 1 }, 0)
                     .to(labelOverlay,       0.1, { backgroundColor: 'rgba(255, 0, 0, 0.7)' }, '-=0.1')
                     .to(studioOverlay,      0.1, { backgroundColor: 'rgba(17, 17, 17, 0.88)' });
-
-                
-                function onStudioTab () {
-                    timeLineStudio.play(0);
-                }
-
-                function onLabelTab () {
-                    timeLineLabel.play(0);
-                }
-
-                studioTab.on('click', onStudioTab);
-                labelTab.on('click', onLabelTab);
             })();
         </script>
 	</body>
